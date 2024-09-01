@@ -20,11 +20,13 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
+    @app.route('/' )
     def home():
         return "welcome chha!"
 
-    from . import db
+    from . import db, auth
     db.init_app(app)
+
+    app.register_blueprint(auth.bp)
     return app
 
